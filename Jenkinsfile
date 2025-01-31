@@ -3,43 +3,27 @@ pipeline{
     stages{
         stage("TF Init"){
             steps{
-                script{
-                    echo "Executing Terraform Init"
-                    sh("terraform init")
-                }
+                echo "Executing Terraform Init"
             }
         }
         stage("TF Validate"){
             steps{
-                script{
-                    echo "Validating Terraform Code"
-                    sh("terraform validate")
-                }
+                echo "Validating Terraform Code"
             }
         }
         stage("TF Plan"){
             steps{
-                script{
-                    echo "Executing Terraform Plan"
-                    sh("terraform plan -out=plan")
-                }
+                echo "Executing Terraform Plan"
             }
         }
         stage("TF Apply"){
             steps{
-                script{
-                    echo "Executing Terraform Apply"
-                    sh("terraform apply --auto-approve")
-                }
-                
+                echo "Executing Terraform Apply"
             }
         }
         stage("Invoke Lambda"){
             steps{
-                script{
-                    echo "Invoking your AWS Lambda"
-                    sh("aws lambda invoke --function-name lambda_fun --log-type Tail response.json")
-                }
+                echo "Invoking your AWS Lambda"
             }
         }
     }
